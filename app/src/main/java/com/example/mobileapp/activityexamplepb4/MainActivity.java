@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText emailValue, passValue;
+    private EditText emailValue, passwordValue;
     private TextView showEmailTextView, showPasswordTextView;
 
     @Override
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Declare variable
         emailValue = findViewById(R.id.emailValue);
-        passValue = findViewById(R.id.passValue);
+        passwordValue = findViewById(R.id.passwordValue);
         showEmailTextView = findViewById(R.id.showEmailTextView);
         showPasswordTextView = findViewById(R.id.showPasswordTextView);
     }
@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     // When click button : action is here
     public void loginUserClick(View view) {
         String inputEmailValue = emailValue.getText().toString();
-        String inputPassValue = passValue.getText().toString();
+        String inputPassValue = passwordValue.getText().toString();
         if (inputEmailValue.isEmpty()) {
             emailValue.setError(getString(R.string.email_error));
         } else if (inputPassValue.isEmpty()) {
-            passValue.setError(getString(R.string.pass_error));
+            passwordValue.setError(getString(R.string.pass_error));
         } else {
             /*showEmailTV.setText(inputEmail);
             showPassTV.setText(inputPass);*/

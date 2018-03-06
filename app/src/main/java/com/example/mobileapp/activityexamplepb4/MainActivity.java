@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void authenticationCheck(String inputEmailValue, String inputPasswordValue) {
         if (inputEmailValue.equals(Constants.User.EMAIL_ADDRESS) && inputPasswordValue.equals(Constants.User.PASSWORD)) {
-
             //Declare Explicit intent
             Intent intent = new Intent(MainActivity.this, HomeActivity.class)
                     .putExtra("email", inputEmailValue)

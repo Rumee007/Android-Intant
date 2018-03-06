@@ -12,44 +12,45 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText emailET, passET;
-    private TextView showEmailTV, showPassTV;
+    private EditText emailValue, passValue;
+    private TextView showEmailTextView, showPasswordTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        emailET = findViewById(R.id.emailValue);
-        passET = findViewById(R.id.passValue);
-        showEmailTV = findViewById(R.id.showEmail);
-        showPassTV = findViewById(R.id.showPass);
+        // Declare variable
+        emailValue = findViewById(R.id.emailValue);
+        passValue = findViewById(R.id.passValue);
+        showEmailTextView = findViewById(R.id.showEmailTextView);
+        showPasswordTextView = findViewById(R.id.showPasswordTextView);
     }
 
-
-    public void loginUser(View view) {
-        String inputEmail = emailET.getText().toString();
-        String inputPass = passET.getText().toString();
-        if(inputEmail.isEmpty()){
-            emailET.setError(getString(R.string.email_error));
-        }else if(inputPass.isEmpty()){
-            passET.setError(getString(R.string.pass_error));
-        }else{
+    // When click button : action is here
+    public void loginUserClick(View view) {
+        String inputEmailValue = emailValue.getText().toString();
+        String inputPassValue = passValue.getText().toString();
+        if (inputEmailValue.isEmpty()) {
+            emailValue.setError(getString(R.string.email_error));
+        } else if (inputPassValue.isEmpty()) {
+            passValue.setError(getString(R.string.pass_error));
+        } else {
             /*showEmailTV.setText(inputEmail);
             showPassTV.setText(inputPass);*/
-            authenticateUser(inputEmail,inputPass);
+            authenticationCheck(inputEmailValue, inputPassValue);
         }
     }
 
-    private void authenticateUser(String inputEmail, String inputPass) {
-        if(inputEmail.equals(Constants.User.EMAIL_ADDRESS) &&
-                inputPass.equals(Constants.User.PASSWORD)){
+    private void authenticationCheck(String inputEmailValue, String inputPassValue) {
+        if (inputEmailValue.equals(Constants.User.EMAIL_ADDRESS) && inputPassValue.equals(Constants.User.PASSWORD)) {
 
-            //declare Explicit intent
-            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-            intent.putExtra("email",inputEmail);
-            intent.putExtra("pass",inputPass);
+            //Declare Explicit intent
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            // Pass value in Intent
+            intent.putExtra("email", inputEmailValue);
+            intent.putExtra("pass", inputPassValue);
             startActivity(intent);
-        }else{
+        } else {
             Toast.makeText(this, getString(R.string.authentication_error), Toast.LENGTH_SHORT).show();
         }
     }

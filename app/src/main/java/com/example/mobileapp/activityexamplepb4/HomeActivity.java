@@ -8,20 +8,28 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView greetingsTextView;
+    private TextView greetingsValue, showEmailValue, showPasswordValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //
         // Call intent
         Intent incomingIntent = getIntent();
         // Get value
         String userEmail = incomingIntent.getStringExtra("email");
-        String userPass = incomingIntent.getStringExtra("pass");
-        // Show value
-        greetingsTextView = findViewById(R.id.greetingsTextView);
-        greetingsTextView.setText(getString(R.string.greetings));
-        Toast.makeText(this, userEmail+", "+userPass, Toast.LENGTH_LONG).show();
+        String userPassword = incomingIntent.getStringExtra("password");
+        // Get Value
+        greetingsValue = findViewById(R.id.greetingsTextView);
+        showEmailValue = findViewById(R.id.showEmailTextView);
+        showPasswordValue = findViewById(R.id.showPasswordTextView);
+        //Set Value
+        greetingsValue.setText("Welcome to Intent!");
+        showEmailValue.setText(userEmail);
+        showPasswordValue.setText(userPassword);
+
+        //Toast.makeText(this, userEmail + ", " + userPassword, Toast.LENGTH_LONG).show();
     }
 }

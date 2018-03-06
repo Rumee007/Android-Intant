@@ -8,13 +8,13 @@
     tools:context="com.example.mobileapp.activityexamplepb4.MainActivity">
 
     <EditText
-        android:id="@+id/emailValue"
+        android:id="@+id/emailTextValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="email address"
         android:inputType="textEmailAddress" />
     <EditText
-        android:id="@+id/passwordValue"
+        android:id="@+id/passwordTextValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter password"

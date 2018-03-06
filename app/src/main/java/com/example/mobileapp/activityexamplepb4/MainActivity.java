@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Declare variable
-        emailValue = findViewById(R.id.emailValue);
-        passwordValue = findViewById(R.id.passwordValue);
+        emailValue = findViewById(R.id.emailTextValue);
+        passwordValue = findViewById(R.id.passwordTextValue);
         showEmailTextView = findViewById(R.id.showEmailTextView);
         showPasswordTextView = findViewById(R.id.showPasswordTextView);
     }
@@ -29,26 +29,28 @@ public class MainActivity extends AppCompatActivity {
     // When click button : action is here
     public void loginUserClick(View view) {
         String inputEmailValue = emailValue.getText().toString();
-        String inputPassValue = passwordValue.getText().toString();
+        String inputPasswordValue = passwordValue.getText().toString();
         if (inputEmailValue.isEmpty()) {
             emailValue.setError(getString(R.string.email_error));
-        } else if (inputPassValue.isEmpty()) {
+        } else if (inputPasswordValue.isEmpty()) {
             passwordValue.setError(getString(R.string.pass_error));
         } else {
             /*showEmailTV.setText(inputEmail);
             showPassTV.setText(inputPass);*/
-            authenticationCheck(inputEmailValue, inputPassValue);
+            authenticationCheck(inputEmailValue, inputPasswordValue);
         }
     }
 
-    private void authenticationCheck(String inputEmailValue, String inputPassValue) {
-        if (inputEmailValue.equals(Constants.User.EMAIL_ADDRESS) && inputPassValue.equals(Constants.User.PASSWORD)) {
+    private void authenticationCheck(String inputEmailValue, String inputPasswordValue) {
+        if (inputEmailValue.equals(Constants.User.EMAIL_ADDRESS) && inputPasswordValue.equals(Constants.User.PASSWORD)) {
 
             //Declare Explicit intent
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class)
+                    .putExtra("email", inputEmailValue)
+                    .putExtra("password", inputPasswordValue);
             // Pass value in Intent
-            intent.putExtra("email", inputEmailValue);
-            intent.putExtra("pass", inputPassValue);
+//            intent.putExtra("email", inputEmailValue);
+//            intent.putExtra("pass", inputPasswordValue);
             startActivity(intent);
         } else {
             Toast.makeText(this, getString(R.string.authentication_error), Toast.LENGTH_SHORT).show();
